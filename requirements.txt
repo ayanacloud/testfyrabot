@@ -7,3 +7,4 @@ faiss-cpu
 python-docx
 PyPDF2
 transformers
+langchain_community
