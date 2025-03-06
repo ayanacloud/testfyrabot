@@ -18,9 +18,25 @@ from langchain.schema import Document
 from langchain.prompts import PromptTemplate
 from langchain.chains import RetrievalQA
 
-# Initialize AWS Clients
-s3 = boto3.client("s3")
-bedrock = boto3.client("bedrock-runtime")
+# Fetch credentials and region from secrets
+aws_access_key_id = st.secrets["aws"]["aws_access_key_id"]
+aws_secret_access_key = st.secrets["aws"]["aws_secret_access_key"]
+region = st.secrets["aws"]["region"]
+
+# Initialize AWS Clients with credentials and region
+s3 = boto3.client(
+    "s3",
+    aws_access_key_id=aws_access_key_id,
+    aws_secret_access_key=aws_secret_access_key,
+    region_name=region
+)
+bedrock = boto3.client(
+    "bedrock-runtime",
+    aws_access_key_id=aws_access_key_id,
+    aws_secret_access_key=aws_secret_access_key,
+    region_name=region
+)
+
 bedrock_embeddings = BedrockEmbeddings(model_id="amazon.titan-embed-text-v2:0", client=bedrock)
 
 # S3 Bucket Info
