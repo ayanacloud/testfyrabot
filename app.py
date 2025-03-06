@@ -186,8 +186,15 @@ def main():
     st.header("Testfyra Bot")
 
     user_question = st.text_input("Ask a Question & Choose from the models provided:")
-
-
+    
+    with st.sidebar:
+        st.title("Vector Store Management")
+        if st.button("Update Vectors"):
+            with st.spinner("Processing..."):
+                docs = data_ingestion()
+                get_vector_store(docs)
+                upload_faiss_to_s3("faiss_index")
+                st.success("✅ FAISS updated!")
     if st.button("Claude Output"):
         with st.spinner("Processing..."):
             faiss_index = load_faiss_from_s3()
