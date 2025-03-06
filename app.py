@@ -37,6 +37,8 @@ bedrock = boto3.client(
     region_name=region
 )
 
+st.write(st.secrets["aws"])
+
 bedrock_embeddings = BedrockEmbeddings(model_id="amazon.titan-embed-text-v2:0", client=bedrock)
 
 # S3 Bucket Info
