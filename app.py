@@ -183,7 +183,7 @@ def get_response_llm(llm, vectorstore_faiss, query):
 
 ### **🔹 Streamlit UI**
 def main():
-    st.set_page_config("Chat PDF")
+    st.set_page_config("TestfyraBot")
     st.header("Testfyra Bot")
 
     user_question = st.text_input("Ask a Question & Choose from the models provided:")
