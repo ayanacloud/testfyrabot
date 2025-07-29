@@ -8,3 +8,5 @@ python-docx
 PyPDF2
 transformers
 langchain_community
+uvicorn
+fastapi
