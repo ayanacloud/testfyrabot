@@ -68,12 +68,19 @@ def ask_bot(q: Query):
     try:
         vectorstore = load_faiss_index()
 
-        if q.model == "claude":
-            llm = BedrockChat(model_id="anthropic.claude-3-sonnet-20240229-v1:0", client=bedrock)
-        elif q.model == "llama2":
-            llm = Bedrock(model_id="meta.llama3-70b-instruct-v1:0", client=bedrock, model_kwargs={'max_gen_len': 512})
-        else:
-            raise HTTPException(status_code=400, detail="Unsupported model")
+     #   if q.model == "claude":
+    #        llm = BedrockChat(model_id="anthropic.claude-3-sonnet-20240229-v1:0", client=bedrock)
+    #    elif q.model == "llama2":
+    #        llm = Bedrock(model_id="meta.llama3-70b-instruct-v1:0", client=bedrock, model_kwargs={'max_gen_len': 512})
+   #     else:
+    #        raise HTTPException(status_code=400, detail="Unsupported model")
+
+        # Always use llama2
+        llm = Bedrock(
+            model_id="meta.llama3-70b-instruct-v1:0",
+            client=bedrock,
+            model_kwargs={'max_gen_len': 512}
+        )
 
         qa = RetrievalQA.from_chain_type(
             llm=llm,
