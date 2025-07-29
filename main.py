@@ -88,3 +88,8 @@ def ask_bot(q: Query):
 
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+
+@app.get("/")
+async def root():
+    return {"message": "TestfyraBot is running. Use POST /ask to query."}
+
